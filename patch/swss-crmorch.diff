@@ -1,0 +1,7 @@
+@@ -88,4 +88,6 @@
+     void checkCrmThresholds();
+     string getCrmAclKey(sai_acl_stage_t stage, sai_acl_bind_point_type_t bindPoint);
+     string getCrmAclTableKey(sai_object_id_t id);
++	
++	friend class Portal;
+ };

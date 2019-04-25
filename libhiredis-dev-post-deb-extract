@@ -1,0 +1,7 @@
+#!/bin/bash
+
+install_pkg_prefix=$1
+
+sed -i 's/libdir=\/usr/libdir=${prefix}/g' $install_pkg_prefix/usr/lib/x86_64-linux-gnu/pkgconfig/hiredis.pc
+sed -i 's/includedir=\/usr/includedir=${prefix}/g' $install_pkg_prefix/usr/lib/x86_64-linux-gnu/pkgconfig/hiredis.pc
+sed -i 's/Cflags:/Cflags: -I${prefix}\/include/g' $install_pkg_prefix/usr/lib/x86_64-linux-gnu/pkgconfig/hiredis.pc

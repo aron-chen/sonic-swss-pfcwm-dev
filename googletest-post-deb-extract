@@ -1,0 +1,35 @@
+#!/bin/bash
+
+extract_pkg_prefix=$1
+build_pkg_prefix="$extract_pkg_prefix/build.dir"
+install_pkg_prefix="$extract_pkg_prefix/install.dir"
+
+if [ -d "$build_pkg_prefix" ]; then
+    rm -rf "$build_pkg_prefix"
+fi
+
+pushd $(pwd)
+
+mkdir -p "$build_pkg_prefix"
+cd "$build_pkg_prefix"
+
+#cmake "$extract_pkg_prefix/usr/src/googletest" -DCMAKE_INSTALL_PREFIX="$install_pkg_prefix" -Dgtest_disable_pthreads=ON && make "-j$(nproc)" && make install
+cmake "$extract_pkg_prefix/usr/src/googletest" -DCMAKE_INSTALL_PREFIX="$install_pkg_prefix" && make "-j$(nproc)" && make install
+popd
+
+if [ ! -d "$install_pkg_prefix/lib/pkgconfig" ]; then
+    mkdir -p "$install_pkg_prefix/lib/pkgconfig"
+fi
+
+cat >"$install_pkg_prefix/lib/pkgconfig/googletest.pc" <<EOL
+prefix=/install.dir
+exec_prefix=\${prefix}
+libdir=\${prefix}/lib
+includedir=\${prefix}/include
+
+Name: libgtest
+Description: Convenience library for Googletest
+Version: 1.8.0
+Libs: -L\${libdir} -lgtest -lgmock
+Cflags: -I\${includedir}
+EOL

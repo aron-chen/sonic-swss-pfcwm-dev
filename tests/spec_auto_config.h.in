@@ -1,0 +1,21 @@
+#ifndef SPEC_CONFIG_H
+#define SPEC_CONFIG_H
+
+/*
+ * SPEC_CONFIG_BUILDDIR is build directory.
+ */
+#define REDIS_START_CMD "@REDIS_START_CMD@"
+
+/*
+ * SPEC_CONFIG_TEXTUREDIR is HTML texture directory.
+ */
+#define REDIS_STOP_CMD "@REDIS_STOP_CMD@"
+
+
+/*
+ * SPEC_CONFIG_TMPDIR is temporary directory using for testing to keep temporary files.
+ */
+#define SPEC_CONFIG_TMPDIR "@SPEC_CONFIG_TMPDIR@"
+
+
+#endif /* SPEC_CONFIG_H */

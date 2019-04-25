@@ -1,0 +1,18 @@
+@@ -218,6 +218,8 @@
+ 
+     vector<sai_object_id_t> m_inPorts;
+     vector<sai_object_id_t> m_outPorts;
++	
++	friend class Portal;
+ };
+ 
+ class AclRuleL3: public AclRule
+@@ -413,6 +415,8 @@
+     static bool m_bCollectCounters;
+     static swss::DBConnector m_db;
+     static swss::Table m_countersTable;
++	
++	friend class Portal;
+ };
+ 
+ #endif /* SWSS_ACLORCH_H */

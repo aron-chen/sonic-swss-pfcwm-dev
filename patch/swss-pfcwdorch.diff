@@ -1,0 +1,9 @@
+@@ -53,6 +53,8 @@
+ 
+     shared_ptr<DBConnector> m_countersDb = nullptr;
+     shared_ptr<Table> m_countersTable = nullptr;
++
++    friend class Portal;
+ };
+ 
+ template <typename DropHandler, typename ForwardHandler>
