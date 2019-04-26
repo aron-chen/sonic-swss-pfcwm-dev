@@ -285,7 +285,7 @@ void fakeConsumer(const string op, const string key, WatermarkOrch* wm_orch)
 /*
  * void WatermarkOrch::doTask(Consumer &consumer)
  */
-TEST_F(WatermarkTest, TelemetryIntervalConfig)
+TEST_F(WatermarkTest, TelemetryIntervalConfigTest)
 {
     auto config_db = swss::DBConnector(CONFIG_DB, swss::DBConnector::DEFAULT_UNIXSOCKET, 0);
     WatermarkOrch *wm_orch = new WatermarkOrch(&config_db, CFG_WATERMARK_TABLE_NAME);
@@ -318,7 +318,7 @@ TEST_F(WatermarkTest, TelemetryIntervalConfig)
 /*
  * void WatermarkOrch::doTask(NotificationConsumer &consumer)
  */
-TEST_F(WatermarkTest, WatermarkClear)
+TEST_F(WatermarkTest, WatermarkClearRequestTest)
 {
     auto config_db = swss::DBConnector(CONFIG_DB, swss::DBConnector::DEFAULT_UNIXSOCKET, 0);
     WatermarkOrch *wm_orch = new WatermarkOrch(&config_db, CFG_WATERMARK_TABLE_NAME);
@@ -392,7 +392,7 @@ TEST_F(WatermarkTest, WatermarkClear)
 /*
  * void WatermarkOrch::doTask(SelectableTimer &timer)
  */
-TEST_F(WatermarkTest, TimmerTest)
+TEST_F(WatermarkTest, TimerExpiresBehaviorTest)
 {
     auto config_db = swss::DBConnector(CONFIG_DB, swss::DBConnector::DEFAULT_UNIXSOCKET, 0);
     WatermarkOrch *wm_orch = new WatermarkOrch(&config_db, CFG_WATERMARK_TABLE_NAME);
