@@ -153,7 +153,7 @@ configure_file (
 
 file(GLOB TESTS
     main.cpp
-    tests/test_watermarkorch.cpp
+    tests/watermarkorch_ut.cpp
 )
 
 file(GLOB SRCS
