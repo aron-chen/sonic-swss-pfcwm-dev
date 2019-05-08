@@ -12,11 +12,6 @@ include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 message(STATUS "CMAKE_MODULE_PATH: " ${CMAKE_MODULE_PATH})
 
-## Add CodeCoverage Test
-include(CTest)
-include(${CMAKE_CURRENT_SOURCE_DIR}/utility/CMakeModules/CodeCoverage.cmake)
-APPEND_COVERAGE_COMPILER_FLAGS()
-
 ## Add required library
 #find_package(Gmock REQUIRED)
 #message(STATUS "GMOCK_INCLUDE_DIR: " ${GMOCK_INCLUDE_DIR})
@@ -181,20 +176,3 @@ set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "pfcWmTest")
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR}/tests)
 target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} pthread hiredis swsscommon saimeta saimetadata orchagent saivs sairedis)
-
-add_test(pfcWmTest pfcWmTest)
-
-SETUP_TARGET_FOR_COVERAGE_LCOV(
-	NAME pfcwm_coverage_test
-	EXECUTABLE ${CMAKE_CTEST_COMMAND}
-)
-
-include (TestBigEndian)
-TEST_BIG_ENDIAN(IS_BIG_ENDIAN)
-if(IS_BIG_ENDIAN)
-    message(STATUS "BIG_ENDIAN")
-else()
-    message(STATUS "LITTLE_ENDIAN")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSYS_HWCFG_LITTLE_ENDIAN_CPU=TRUE")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSYS_HWCFG_LITTLE_ENDIAN_CPU=TRUE")
-endif()
