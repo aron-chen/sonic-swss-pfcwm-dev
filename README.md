@@ -4,9 +4,8 @@ Unit test environment for PFC WaterMarks
 ## Getting Started
 
 ```
-git clone https://github.com/ezio-chen/sonic-swss-acl-dev
-cd sonic-swss-acl-dev/
-git checkout remotes/origin/package_install
+git clone https://github.com/aron-chen/sonic-swss-pfcwm-dev
+cd sonic-swss-pfcwm-dev/
 
 sudo bash -x install-pkg.sh -g
 
